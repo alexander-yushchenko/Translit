@@ -1,0 +1,49 @@
+﻿<Window x:Class="AY.Translit.TestApp.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local ="clr-namespace:AY.Translit.TestApp"
+        Title="Translit Test Application" Height="350" Width="500">
+    
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0">
+            <TextBlock Text="Input"/>
+            <TextBox Margin="0,20,0,0" 
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding Path=(local:IMainWindow.InputData)}"/>
+        </Grid>
+        <Grid Row="2">
+            <TextBlock Text="Output"/>
+            <TextBox Margin="0,20,0,0" IsReadOnly="True" 
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding Path=(local:IMainWindow.OutputData)}"/>
+        </Grid>
+        <Grid Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Input language"/>
+            <ComboBox Grid.Column="0" Margin="0,20,0,0"
+                      SelectedIndex="{Binding Path=(local:IMainWindow.InputLanguageSelectedIndex)}">
+                <ComboBoxItem Content="Russian"/>
+                <ComboBoxItem Content="Ukrainian"/>
+            </ComboBox>
+            <Button Grid.Column="2" Margin="0,20,0,0" Content="Clear all"
+                    Command="{Binding Path=(local:IMainWindow.ClearAllCommand)}"/>
+            <Button Grid.Column="4" Margin="0,20,0,0" Content="Transliterate"
+                    Command="{Binding Path=(local:IMainWindow.TransliterateCommand)}"/>
+        </Grid>
+    </Grid>
+</Window>
